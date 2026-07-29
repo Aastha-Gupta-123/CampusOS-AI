@@ -1,0 +1,499 @@
+{
+  "academic_blocks": [
+    {
+      "id": "block_a",
+      "name": "Academic Block A",
+      "block": "A",
+      "floor": "Ground, 1, 2, 3",
+      "description": "Main academic block housing the Department of Computer Science and Engineering, classrooms, and faculty offices.",
+      "nearby_landmarks": ["Library", "Admin Office", "Main Gate"],
+      "walking_time_minutes": 2
+    },
+    {
+      "id": "block_b",
+      "name": "Academic Block B",
+      "block": "B",
+      "floor": "Ground, 1, 2, 3",
+      "description": "Academic block housing Mechanical Engineering, Civil Engineering, and related labs.",
+      "nearby_landmarks": ["Cafeteria", "Seminar Hall", "Sports Complex"],
+      "walking_time_minutes": 4
+    },
+    {
+      "id": "block_c",
+      "name": "Academic Block C",
+      "block": "C",
+      "floor": "Ground, 1, 2",
+      "description": "Academic block housing Electronics and Communication Engineering, Electrical Engineering departments.",
+      "nearby_landmarks": ["Auditorium", "Parking Lot", "Bus Stop"],
+      "walking_time_minutes": 5
+    }
+  ],
+  "departments": [
+    {
+      "id": "cse",
+      "name": "Computer Science and Engineering",
+      "block": "A",
+      "floor": "1",
+      "room": "A105",
+      "description": "CSE department with faculty offices, research labs, and smart classrooms.",
+      "nearby_landmarks": ["AI Lab", "Library", "Admin Office"],
+      "aliases": ["cse", "computer science", "comp sci", "computer science department"],
+      "walking_time_minutes": 2
+    },
+    {
+      "id": "ece",
+      "name": "Electronics and Communication Engineering",
+      "block": "C",
+      "floor": "1",
+      "room": "C105",
+      "description": "ECE department with VLSI lab, communication lab, and faculty offices.",
+      "nearby_landmarks": ["Auditorium", "Parking", "Ground"],
+      "aliases": ["ece", "electronics", "electronics department", "communication"],
+      "walking_time_minutes": 5
+    },
+    {
+      "id": "eee",
+      "name": "Electrical and Electronics Engineering",
+      "block": "C",
+      "floor": "2",
+      "room": "C205",
+      "description": "EEE department with power systems lab, electrical machines lab.",
+      "nearby_landmarks": ["Auditorium", "Parking"],
+      "aliases": ["eee", "electrical", "electrical department"],
+      "walking_time_minutes": 5
+    },
+    {
+      "id": "mech",
+      "name": "Mechanical Engineering",
+      "block": "B",
+      "floor": "Ground",
+      "room": "B010",
+      "description": "Mechanical engineering department with CAD lab, workshop, and faculty offices.",
+      "nearby_landmarks": ["Cafeteria", "Seminar Hall", "Sports Complex"],
+      "aliases": ["mech", "mechanical", "mechanical department", "mechanical engineering"],
+      "walking_time_minutes": 3
+    },
+    {
+      "id": "civil",
+      "name": "Civil Engineering",
+      "block": "B",
+      "floor": "1",
+      "room": "B110",
+      "description": "Civil engineering department with surveying lab, materials testing lab.",
+      "nearby_landmarks": ["Cafeteria", "Ground"],
+      "aliases": ["civil", "civil department", "civil engineering"],
+      "walking_time_minutes": 4
+    },
+    {
+      "id": "aiml",
+      "name": "AI and Machine Learning",
+      "block": "A",
+      "floor": "2",
+      "room": "A205",
+      "description": "AI/ML department with dedicated research labs and GPU workstations for deep learning.",
+      "nearby_landmarks": ["AI Lab", "Library", "Innovation Center"],
+      "aliases": ["aiml", "ai ml", "artificial intelligence", "machine learning", "ai department"],
+      "walking_time_minutes": 2
+    },
+    {
+      "id": "ds",
+      "name": "Data Science",
+      "block": "A",
+      "floor": "2",
+      "room": "A210",
+      "description": "Data Science department focusing on analytics, big data, and statistical computing.",
+      "nearby_landmarks": ["Library", "Computer Lab", "Admin Office"],
+      "aliases": ["data science", "data science department", "ds"],
+      "walking_time_minutes": 2
+    },
+    {
+      "id": "it",
+      "name": "Information Technology",
+      "block": "A",
+      "floor": "3",
+      "room": "A305",
+      "description": "IT department with networking labs, cybersecurity lab, and smart classrooms.",
+      "nearby_landmarks": ["Placement Cell", "Computer Lab"],
+      "aliases": ["it", "information technology", "it department"],
+      "walking_time_minutes": 3
+    }
+  ],
+  "labs": [
+    {
+      "id": "ai_lab",
+      "name": "AI Lab",
+      "block": "A",
+      "floor": "1",
+      "room": "A108",
+      "description": "State-of-the-art AI lab with NVIDIA GPU workstations for deep learning and computer vision research.",
+      "nearby_landmarks": ["CSE Department", "Library", "Innovation Center"],
+      "aliases": ["ai lab", "artificial intelligence lab", "machine learning lab", "deep learning lab"],
+      "walking_time_minutes": 1
+    },
+    {
+      "id": "computer_lab",
+      "name": "Computer Lab",
+      "block": "A",
+      "floor": "2",
+      "room": "A208",
+      "description": "General purpose computer lab with 100+ workstations for programming and practical exams.",
+      "nearby_landmarks": ["Library", "CSE Department", "Data Science Department"],
+      "aliases": ["computer lab", "programming lab", "coding lab", "computer center"],
+      "walking_time_minutes": 2
+    },
+    {
+      "id": "physics_lab",
+      "name": "Physics Lab",
+      "block": "B",
+      "floor": "2",
+      "room": "B205",
+      "description": "Physics laboratory equipped with optics, mechanics, and electronics experiment setups.",
+      "nearby_landmarks": ["Mechanical Department", "Cafeteria"],
+      "aliases": ["physics lab", "physics laboratory"],
+      "walking_time_minutes": 3
+    },
+    {
+      "id": "chemistry_lab",
+      "name": "Chemistry Lab",
+      "block": "B",
+      "floor": "2",
+      "room": "B210",
+      "description": "Chemistry laboratory with fume hoods, analytical instruments, and safety equipment.",
+      "nearby_landmarks": ["Civil Department", "Cafeteria"],
+      "aliases": ["chemistry lab", "chemistry laboratory"],
+      "walking_time_minutes": 3
+    },
+    {
+      "id": "research_lab",
+      "name": "Research Lab",
+      "block": "B",
+      "floor": "3",
+      "room": "B305",
+      "description": "Advanced research laboratory for postgraduate and PhD research across engineering disciplines.",
+      "nearby_landmarks": ["Seminar Hall", "Incubation Center"],
+      "aliases": ["research lab", "pg lab", "research laboratory"],
+      "walking_time_minutes": 4
+    }
+  ],
+  "library": [
+    {
+      "id": "central_library",
+      "name": "Central Library",
+      "block": "A",
+      "floor": "2",
+      "room": "A201-A204",
+      "description": "Main library with over 50,000 books, digital resources, reading halls, and reference sections.",
+      "nearby_landmarks": ["CSE Department", "Computer Lab", "Admin Office"],
+      "aliases": ["library", "central library", "book library", "reading room", "digital library"],
+      "walking_time_minutes": 2
+    }
+  ],
+  "seminar_halls": [
+    {
+      "id": "seminar_hall_1",
+      "name": "Seminar Hall (Block B)",
+      "block": "B",
+      "floor": "Ground",
+      "room": "B002",
+      "description": "150-seat seminar hall with audio-visual equipment for guest lectures and presentations.",
+      "nearby_landmarks": ["Cafeteria", "Mechanical Department", "Sports Complex"],
+      "aliases": ["seminar hall", "seminar hall b", "conference hall"],
+      "walking_time_minutes": 3
+    },
+    {
+      "id": "seminar_hall_2",
+      "name": "Seminar Hall (Block A)",
+      "block": "A",
+      "floor": "Ground",
+      "room": "A002",
+      "description": "100-seat seminar hall used for departmental seminars and workshops.",
+      "nearby_landmarks": ["Admin Office", "Main Gate", "Reception"],
+      "aliases": ["seminar hall a", "workshop hall"],
+      "walking_time_minutes": 1
+    }
+  ],
+  "auditoriums": [
+    {
+      "id": "main_auditorium",
+      "name": "Main Auditorium",
+      "block": "C",
+      "floor": "Ground",
+      "room": "C001",
+      "description": "1000-seat state-of-the-art auditorium with stage, green room, and premium sound system for cultural events and convocations.",
+      "nearby_landmarks": ["Block C", "Parking Lot", "Ground"],
+      "aliases": ["auditorium", "main auditorium", "college auditorium", "event hall", "cultural hall"],
+      "walking_time_minutes": 5
+    }
+  ],
+  "cafeteria": [
+    {
+      "id": "main_cafeteria",
+      "name": "Main Cafeteria",
+      "block": "D",
+      "floor": "Ground",
+      "room": "D001",
+      "description": "Spacious cafeteria serving breakfast, lunch, and snacks. Vegetarian and non-vegetarian options available.",
+      "nearby_landmarks": ["Block B", "Seminar Hall", "Sports Complex", "Student Lounge"],
+      "aliases": ["cafeteria", "canteen", "food court", "mess", "dining hall", "student cafeteria"],
+      "walking_time_minutes": 3
+    }
+  ],
+  "hostels": [
+    {
+      "id": "boys_hostel_1",
+      "name": "Boys Hostel 1",
+      "block": "G",
+      "floor": "1, 2, 3",
+      "room": "G-Block",
+      "description": "Four-seater rooms with attached bathroom, study tables, and Wi-Fi. Capacity: 300 students.",
+      "nearby_landmarks": ["Bus Parking", "Main Gate", "Academic Blocks"],
+      "aliases": ["boys hostel", "boys hostel 1", "g block hostel"],
+      "walking_time_minutes": 8
+    },
+    {
+      "id": "boys_hostel_2",
+      "name": "Boys Hostel 2",
+      "block": "H",
+      "floor": "1, 2, 3",
+      "room": "H-Block",
+      "description": "Three-seater rooms with modern amenities, common room, and 24/7 security.",
+      "nearby_landmarks": ["Bus Parking", "Playground"],
+      "aliases": ["boys hostel 2", "h block hostel", "new boys hostel"],
+      "walking_time_minutes": 10
+    },
+    {
+      "id": "girls_hostel",
+      "name": "Girls Hostel",
+      "block": "I",
+      "floor": "1, 2, 3",
+      "room": "I-Block",
+      "description": "Girls hostel with 24/7 security, warden availability, and recreational facilities.",
+      "nearby_landmarks": ["Medical Room", "Health Center"],
+      "aliases": ["girls hostel", "ladies hostel", "women's hostel"],
+      "walking_time_minutes": 7
+    }
+  ],
+  "transportation": [
+    {
+      "id": "bus_parking",
+      "name": "Bus Parking",
+      "block": "F",
+      "floor": "Ground",
+      "room": "Open Area",
+      "description": "Main bus parking area for college buses and student transportation.",
+      "nearby_landmarks": ["Main Gate", "Parking Lot", "Hostels"],
+      "aliases": ["bus parking", "bus stand", "bus stop", "college bus"],
+      "walking_time_minutes": 1
+    },
+    {
+      "id": "parking_lot",
+      "name": "Parking Lot",
+      "block": "F",
+      "floor": "Ground",
+      "room": "Open Area",
+      "description": "Parking area for staff and student vehicles including two-wheelers and four-wheelers.",
+      "nearby_landmarks": ["Main Gate", "Bus Parking", "Auditorium"],
+      "aliases": ["parking", "parking lot", "vehicle parking", "car parking", "bike parking"],
+      "walking_time_minutes": 1
+    }
+  ],
+  "administrative": [
+    {
+      "id": "admin_office",
+      "name": "Administrative Office",
+      "block": "A",
+      "floor": "Ground",
+      "room": "A001",
+      "description": "Main administrative office handling admissions, fees, student records, and general inquiries.",
+      "nearby_landmarks": ["Main Gate", "Reception", "Principal's Office", "Security Office"],
+      "aliases": ["admin office", "administration", "administrative office", "college office"],
+      "walking_time_minutes": 1
+    },
+    {
+      "id": "principal_office",
+      "name": "Principal's Office",
+      "block": "A",
+      "floor": "Ground",
+      "room": "A003",
+      "description": "Office of the Principal, Sri Eshwar College of Engineering.",
+      "nearby_landmarks": ["Admin Office", "Reception"],
+      "aliases": ["principal office", "principal", "principal's office"],
+      "walking_time_minutes": 1
+    }
+  ],
+  "student_services": [
+    {
+      "id": "placement_cell",
+      "name": "Placement Cell",
+      "block": "A",
+      "floor": "3",
+      "room": "A310",
+      "description": "Training and Placement cell managing campus recruitment, internships, and career guidance programs.",
+      "nearby_landmarks": ["IT Department", "Computer Lab", "Exam Cell"],
+      "aliases": ["placement cell", "placement office", "training and placement", "tnp", "campus placement"],
+      "walking_time_minutes": 3
+    },
+    {
+      "id": "exam_cell",
+      "name": "Exam Cell",
+      "block": "A",
+      "floor": "3",
+      "room": "A315",
+      "description": "Examination cell handling semester exams, hall tickets, results, and academic records.",
+      "nearby_landmarks": ["Placement Cell", "Admin Office"],
+      "aliases": ["exam cell", "examination cell", "exam office", "results"],
+      "walking_time_minutes": 3
+    },
+    {
+      "id": "reception",
+      "name": "Reception",
+      "block": "A",
+      "floor": "Ground",
+      "room": "A000",
+      "description": "Main reception desk for visitor inquiries, guest registration, and information.",
+      "nearby_landmarks": ["Main Gate", "Admin Office", "Security Office"],
+      "aliases": ["reception", "front desk", "inquiry", "help desk"],
+      "walking_time_minutes": 1
+    },
+    {
+      "id": "security_office",
+      "name": "Security Office",
+      "block": "A",
+      "floor": "Ground",
+      "room": "A000",
+      "description": "Campus security office monitoring entry/exit and campus safety.",
+      "nearby_landmarks": ["Main Gate", "Reception"],
+      "aliases": ["security", "security office", "security desk", "gate security"],
+      "walking_time_minutes": 1
+    }
+  ],
+  "facilities": [
+    {
+      "id": "sports_complex",
+      "name": "Sports Complex",
+      "block": "E",
+      "floor": "Ground, 1",
+      "room": "E-Block",
+      "description": "Indoor sports facility with basketball court, badminton courts, table tennis, gymnasium, and chess room.",
+      "nearby_landmarks": ["Block B", "Cafeteria", "Ground"],
+      "aliases": ["sports complex", "gym", "indoor sports", "basketball court", "badminton court", "gymnasium"],
+      "walking_time_minutes": 4
+    },
+    {
+      "id": "ground",
+      "name": "College Ground",
+      "block": "E",
+      "floor": "Ground",
+      "room": "Open Area",
+      "description": "Large outdoor ground for cricket, football, athletics, and college events.",
+      "nearby_landmarks": ["Sports Complex", "Block C", "Auditorium"],
+      "aliases": ["ground", "playground", "football ground", "cricket ground", "sports ground", "open ground"],
+      "walking_time_minutes": 5
+    },
+    {
+      "id": "medical_room",
+      "name": "Medical Room",
+      "block": "A",
+      "floor": "1",
+      "room": "A104",
+      "description": "First aid and basic medical care room with a nurse on duty during college hours.",
+      "nearby_landmarks": ["Admin Office", "Health Center", "Girls Hostel"],
+      "aliases": ["medical room", "first aid", "health room", "sick room", "infirmary"],
+      "walking_time_minutes": 2
+    },
+    {
+      "id": "health_center",
+      "name": "Health Center",
+      "block": "A",
+      "floor": "1",
+      "room": "A106",
+      "description": "Campus health center with regular doctor visits and basic medical facilities.",
+      "nearby_landmarks": ["Medical Room", "Admin Office"],
+      "aliases": ["health center", "college clinic", "doctor", "healthcare"],
+      "walking_time_minutes": 2
+    },
+    {
+      "id": "restrooms",
+      "name": "Restrooms",
+      "block": "All Blocks",
+      "floor": "Every Floor",
+      "room": "Near Staircases",
+      "description": "Clean and well-maintained restrooms available on every floor of all academic blocks.",
+      "nearby_landmarks": ["Staircases", "Elevators"],
+      "aliases": ["restroom", "washroom", "toilet", "bathroom", "ladies room", "gents room"],
+      "walking_time_minutes": 1
+    },
+    {
+      "id": "student_lounge",
+      "name": "Student Lounge",
+      "block": "D",
+      "floor": "1",
+      "room": "D101",
+      "description": "Relaxation area for students with comfortable seating, magazines, and vending machines.",
+      "nearby_landmarks": ["Cafeteria", "Block B", "Seminar Hall"],
+      "aliases": ["student lounge", "lounge", "common room", "student common room"],
+      "walking_time_minutes": 3
+    }
+  ],
+  "innovation": [
+    {
+      "id": "innovation_center",
+      "name": "Innovation Center",
+      "block": "A",
+      "floor": "2",
+      "room": "A212",
+      "description": "Innovation hub for student startups, project incubation, and creative ideation with mentorship support.",
+      "nearby_landmarks": ["AI Lab", "Library", "Incubation Center"],
+      "aliases": ["innovation center", "innovation hub", "startup center", "ideation lab"],
+      "walking_time_minutes": 2
+    },
+    {
+      "id": "incubation_center",
+      "name": "Incubation Center",
+      "block": "B",
+      "floor": "3",
+      "room": "B310",
+      "description": "Startup incubation facility providing workspace, mentorship, and resources for student entrepreneurs.",
+      "nearby_landmarks": ["Research Lab", "Seminar Hall", "Innovation Center"],
+      "aliases": ["incubation center", "incubator", "startup incubator", "entrepreneurship cell", "e cell"],
+      "walking_time_minutes": 4
+    }
+  ],
+  "entry_exit": [
+    {
+      "id": "main_gate",
+      "name": "Main Gate",
+      "block": "Front",
+      "floor": "Ground",
+      "room": "Entrance",
+      "description": "Main entrance gate of Sri Eshwar College of Engineering with security check.",
+      "nearby_landmarks": ["Bus Parking", "Reception", "Admin Office", "Parking Lot"],
+      "aliases": ["main gate", "entrance", "college gate", "main entrance", "front gate"],
+      "walking_time_minutes": 0
+    }
+  ],
+  "miscellaneous": [
+    {
+      "id": "atm",
+      "name": "ATM",
+      "block": "A",
+      "floor": "Ground",
+      "room": "Near Reception",
+      "description": "24/7 ATM facility near the reception area for student convenience.",
+      "nearby_landmarks": ["Reception", "Main Gate", "Admin Office"],
+      "aliases": ["atm", "bank machine", "cash machine"],
+      "walking_time_minutes": 1
+    },
+    {
+      "id": "stationery_shop",
+      "name": "Stationery Shop",
+      "block": "D",
+      "floor": "Ground",
+      "room": "D002",
+      "description": "Campus stationery shop for books, supplies, and printing services.",
+      "nearby_landmarks": ["Cafeteria", "Student Lounge"],
+      "aliases": ["stationery", "book shop", "print shop", "photocopy"],
+      "walking_time_minutes": 3
+    }
+  ]
+}

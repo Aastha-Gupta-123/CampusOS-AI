@@ -1,0 +1,72 @@
+2026-07-28 15:52:33,805 [INFO] Found campus data at: c:\Users\deepi\OneDrive\New folder (3)\CampusAIAgent\backend\data\campus_locations.json
+2026-07-28 15:52:33,810 [INFO] Loaded 43 locations across 15 categories
+2026-07-28 15:52:33,811 [INFO] Search service initialized with fuzzy matching
+2026-07-28 15:52:33,811 [INFO] Navigation Agent initialized with 43 locations
+2026-07-28 15:52:33,811 [INFO] Found campus data at: c:\Users\deepi\OneDrive\New folder (3)\CampusAIAgent\backend\data\campus_locations.json
+2026-07-28 15:52:33,812 [INFO] Loaded 43 locations across 15 categories
+INFO:     Started server process [27692]
+INFO:     Waiting for application startup.
+2026-07-28 15:52:34,265 [INFO] Initializing database...
+2026-07-28 15:52:34,272 [INFO] Database initialized.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+Info: GROQ_API_KEY not set. AI features will use fallback logic.
+INFO:     127.0.0.1:65055 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49675 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49362 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52126 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64239 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65506 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50947 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49675 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59248 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59111 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56009 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55743 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54562 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53316 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49216 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63163 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54177 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59622 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51098 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52399 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49406 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50669 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50326 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63227 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50767 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58116 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49202 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54188 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62863 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58206 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55669 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61662 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55729 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56754 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56091 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55047 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62090 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55796 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57529 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49881 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51465 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58461 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55813 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55814 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55815 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59106 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51382 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61623 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60740 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59096 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62279 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62279 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62279 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59579 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57874 - "GET /complaints HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62279 - "GET /dashboard/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59579 - "GET /system/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57874 - "GET /complaints HTTP/1.1" 200 OK

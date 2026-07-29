@@ -1,0 +1,107 @@
+[
+  {
+    "name": "AI Lab",
+    "block": "B",
+    "floor": "1",
+    "room": "B105",
+    "description": "A state-of-the-art lab used for AI and machine learning practicals."
+  },
+  {
+    "name": "Library",
+    "block": "A",
+    "floor": "2",
+    "room": "A201",
+    "description": "The main library for books, study spaces, and academic resources."
+  },
+  {
+    "name": "Seminar Hall",
+    "block": "C",
+    "floor": "Ground",
+    "room": "C001",
+    "description": "A large lecture and event hall for seminars and presentations."
+  },
+  {
+    "name": "Computer Lab",
+    "block": "B",
+    "floor": "2",
+    "room": "B205",
+    "description": "A modern computer lab with high-performance workstations for programming and research."
+  },
+  {
+    "name": "Main Office",
+    "block": "A",
+    "floor": "Ground",
+    "room": "A001",
+    "description": "The main administrative office for student inquiries and support."
+  },
+  {
+    "name": "Cafeteria",
+    "block": "D",
+    "floor": "Ground",
+    "room": "D001",
+    "description": "The campus cafeteria serving meals, snacks, and beverages."
+  },
+  {
+    "name": "Auditorium",
+    "block": "C",
+    "floor": "1",
+    "room": "C101",
+    "description": "A large auditorium used for events, cultural programs, and guest lectures."
+  },
+  {
+    "name": "Sports Complex",
+    "block": "E",
+    "floor": "Ground",
+    "room": "E001",
+    "description": "Indoor and outdoor sports facilities including basketball, badminton, and gym."
+  },
+  {
+    "name": "Parking Lot",
+    "block": "F",
+    "floor": "Ground",
+    "room": "",
+    "description": "Main parking area for students, faculty, and visitors."
+  },
+  {
+    "name": "Health Center",
+    "block": "A",
+    "floor": "1",
+    "room": "A102",
+    "description": "Campus health center providing basic medical assistance and first aid."
+  },
+  {
+    "name": "Placement Office",
+    "block": "B",
+    "floor": "3",
+    "room": "B301",
+    "description": "Training and placement cell for campus recruitment and career guidance."
+  },
+  {
+    "name": "Research Lab",
+    "block": "B",
+    "floor": "3",
+    "room": "B305",
+    "description": "Advanced research laboratory for postgraduate and faculty research projects."
+  },
+  {
+    "name": "Student Lounge",
+    "block": "D",
+    "floor": "1",
+    "room": "D102",
+    "description": "A relaxing space for students with seating, games, and vending machines."
+  },
+  {
+    "name": "IT Support Desk",
+    "block": "A",
+    "floor": "Ground",
+    "room": "A010",
+    "description": "IT help desk for resolving technical issues and providing device support."
+  },
+  {
+    "name": "WiFi Zone",
+    "block": "All Blocks",
+    "floor": "All Floors",
+    "room": "",
+    "description": "Free high-speed WiFi available across all campus blocks."
+  }
+]
