@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartCampus — Attendance Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ SIDEBAR ═══ -->
+<aside class="sidebar">
+
+  <div class="sidebar-brand">
+    <div class="brand-logo">🎓</div>
+    <div>
+      <div class="brand-name">SmartCampus</div>
+      <div class="brand-sub">Attendance Intelligence</div>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">{{ data.student.name[0] }}</div>
+    <div class="student-info">
+      <div class="student-name">{{ data.student.name }}</div>
+      <div class="student-roll">{{ data.student.roll }}</div>
+      <div class="student-dept">{{ data.student.dept }}</div>
+      <div class="student-sem">Semester {{ data.student.sem }}</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Navigation</div>
+    <a href="#overview" class="nav-item active">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Overview
+    </a>
+    <a href="#subjects" class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Subjects
+    </a>
+    <a href="#chat-section" class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      AI Assistant
+    </a>
+  </nav>
+
+  <!-- Chat History -->
+  <div class="history-section">
+    <div class="history-header">
+      <span class="history-label">Chat History</span>
+      <button class="new-chat-btn" onclick="newChat()">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New
+      </button>
+    </div>
+    <div class="history-list" id="historyList">
+      <div class="history-empty">No conversations yet</div>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    {% if data.eligible %}
+      <div class="badge badge-eligible">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Eligible for Exams
+      </div>
+    {% else %}
+      <div class="badge badge-danger">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Not Fully Eligible
+      </div>
+    {% endif %}
+  </div>
+
+</aside>
+
+<!-- ═══════════════════════════════════════ MAIN ═══ -->
+<main class="main">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-title">Attendance Dashboard</div>
+      <div class="topbar-meta">{{ data.student.dept }} &nbsp;·&nbsp; Semester {{ data.student.sem }}</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-date" id="topbarDate"></div>
+    </div>
+  </header>
+
+  <!-- ── Overview ── -->
+  <section id="overview" class="section">
+    <div class="stats-grid">
+
+      <div class="stat-card stat-primary">
+        <div class="stat-icon-wrap">
+          <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="stat-value">{{ data.overall }}%</div>
+        <div class="stat-label">Overall Attendance</div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:{{ data.overall }}%; background:rgba(255,255,255,.9);"></div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon-wrap">
+          <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div class="stat-value">{{ data.subjects | length }}</div>
+        <div class="stat-label">Total Subjects</div>
+      </div>
+
+      <div class="stat-card {% if data.defaulters %}stat-warn{% else %}stat-success{% endif %}">
+        <div class="stat-icon-wrap">
+          {% if data.defaulters %}
+            <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          {% else %}
+            <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          {% endif %}
+        </div>
+        <div class="stat-value">{{ data.defaulters | length }}</div>
+        <div class="stat-label">Subjects Below 75%</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon-wrap">
+          <svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="stat-value">
+          {% set excellent = data.subjects | selectattr("status", "equalto", "excellent") | list %}
+          {{ excellent | length }}
+        </div>
+        <div class="stat-label">Subjects Above 90%</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Subjects ── -->
+  <section id="subjects" class="section">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Subject-wise Attendance</h2>
+        <p class="section-sub">Detailed breakdown for all enrolled subjects</p>
+      </div>
+    </div>
+    <div class="table-wrapper">
+      <table class="attendance-table">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Faculty</th>
+            <th style="text-align:center">Credits</th>
+            <th style="text-align:center">Attended / Total</th>
+            <th>Attendance</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in data.subjects %}
+          <tr>
+            <td class="subject-name">{{ s.name }}</td>
+            <td class="faculty-name">{{ s.faculty }}</td>
+            <td class="classes-cell">{{ s.credits }}</td>
+            <td class="classes-cell">{{ s.attended }} / {{ s.total }}</td>
+            <td>
+              <div class="pct-cell">
+                <span class="pct-value pct-{{ s.status }}">{{ s.percentage }}%</span>
+                <div class="mini-bar">
+                  <div class="mini-fill fill-{{ s.status }}" style="width:{{ s.percentage }}%;"></div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="status-badge status-{{ s.status }}">
+                {% if s.status == 'excellent' %}
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Excellent
+                {% elif s.status == 'good' %}
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Good
+                {% else %}
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Shortage
+                {% endif %}
+              </span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── AI Chat ── -->
+  <section id="chat-section" class="section">
+    <div class="section-header chat-header-row">
+      <div>
+        <h2 class="section-title">AI Attendance Assistant</h2>
+        <p class="section-sub">Powered by Groq LLM · Ask anything about your attendance</p>
+      </div>
+      <button class="new-chat-btn-main" onclick="newChat()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Chat
+      </button>
+    </div>
+
+    <div class="chat-container">
+      <span id="welcomeText" data-name="{{ data.student.name }}" style="display:none"></span>
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <div class="chat-suggestions">
+        <button class="suggestion" onclick="sendSuggestion(this)">What is my overall attendance?</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">Which subjects are below 75%?</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">Am I eligible for exams?</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">How many classes do I need to attend?</button>
+      </div>
+
+      <div class="chat-input-row">
+        <input
+          type="text"
+          id="chatInput"
+          class="chat-input"
+          placeholder="Ask about your attendance…"
+          autocomplete="off"
+        />
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  document.getElementById('topbarDate').textContent = new Date().toLocaleDateString('en-US', {
+    weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+  });
+</script>
+
+</body>
+</html>
