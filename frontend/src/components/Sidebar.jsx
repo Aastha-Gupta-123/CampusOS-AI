@@ -3,12 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, Compass, Building2, ClipboardList,
   Info, Settings, Sparkles, X, Zap, Map,
+  BarChart3, Calendar, BrainCircuit, Briefcase,
 } from 'lucide-react';
 
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard', end: true },
   { to: '/navigation', icon: Compass, label: 'Navigation AI' },
   { to: '/hostel', icon: Building2, label: 'Hostel AI' },
+  { to: '/attendance', icon: BarChart3, label: 'Attendance AI' },
+  { to: '/timetable', icon: Calendar, label: 'Timetable AI' },
+  { to: '/placement', icon: Briefcase, label: 'Placement AI' },
+  { to: '/campusos', icon: BrainCircuit, label: 'CampusOS AI' },
   { to: '/tracker', icon: ClipboardList, label: 'Complaint Tracker' },
   { to: '/map', icon: Map, label: 'Campus Map' },
   { to: '/about', icon: Info, label: 'About' },

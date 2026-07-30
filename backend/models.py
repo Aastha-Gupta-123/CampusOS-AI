@@ -1,12 +1,35 @@
-"""SQLAlchemy models for the backend package.
-
-Save as: backend/models.py
-"""
+"""SQLAlchemy models for the backend package."""
 from datetime import datetime
-from sqlalchemy import Column, DateTime, Integer, String, Text
+from sqlalchemy import Column, DateTime, Integer, String, Text, Enum as SAEnum
 from sqlalchemy.orm import declarative_base
+import enum
 
 Base = declarative_base()
+
+
+class UserRole(str, enum.Enum):
+    STUDENT = "student"
+    FACULTY = "faculty"
+    ADMIN = "admin"
+
+
+class User(Base):
+    """Represents a registered user of CampusMate AI."""
+
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    full_name = Column(String(255), nullable=False)
+    register_number = Column(String(100), unique=True, nullable=False, index=True)
+    email = Column(String(255), unique=True, nullable=False, index=True)
+    phone = Column(String(20), nullable=False)
+    department = Column(String(100), nullable=False)
+    year = Column(String(20), nullable=False)
+    hostel_status = Column(String(50), nullable=False)  # "Hostel" or "Day Scholar"
+    role = Column(String(20), nullable=False, default="student")
+    password_hash = Column(String(255), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
 class Location(Base):

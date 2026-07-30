@@ -6,9 +6,14 @@ import time
 from datetime import datetime, date
 
 from database import get_db, engine
+from learning_agent import LearningCoachAgent
+from placement_agent import PlacementAgent
 from campus_agent import CampusNavigationAgent
 from hostel_agent import HostelComplaintAgent
 from navigation_agent import NavigationAgent
+from attendance_agent import AttendanceAgent
+from timetable_agent import TimetableAgent
+from orchestrator_agent import OrchestratorAgent
 from models import Location, Complaint
 from location_service import LocationService
 
@@ -16,9 +21,26 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-# Instantiate the new navigation agent (stateless, uses JSON knowledge base)
+# Instantiate agents
 nav_agent = NavigationAgent()
+attendance_agent = AttendanceAgent()
+timetable_agent = TimetableAgent()
+placement_agent = PlacementAgent()
+learning_coach_agent = LearningCoachAgent()
+orchestrator = OrchestratorAgent()
 _location_service = LocationService()
+
+
+class CampusOSRequest(BaseModel):
+    mode: str = Field(..., example="learning")
+    subject: Optional[str] = ""
+    current_skill_level: Optional[str] = "beginner"
+    exam_date: Optional[str] = ""
+    study_hours_per_day: Optional[int] = 2
+    company_name: Optional[str] = ""
+    job_role: Optional[str] = ""
+    current_skills: Optional[str] = ""
+    experience_level: Optional[str] = "fresher"
 
 
 class LocationCreate(BaseModel):
@@ -68,6 +90,10 @@ def dashboard_stats(db=Depends(get_db)) -> Dict[str, Any]:
     in_progress = sum(1 for c in all_complaints if c.status == "In Progress")
     total_complaints = len(all_complaints)
 
+    # Get attendance and timetable summaries
+    att_summary = attendance_agent.get_summary()
+    tt_summary = timetable_agent.get_summary()
+
     # DB health check
     db_ok = True
     try:
@@ -83,10 +109,13 @@ def dashboard_stats(db=Depends(get_db)) -> Dict[str, Any]:
         "in_progress_complaints": in_progress,
         "total_complaints": total_complaints,
         "active_users": 128,
+        "overall_attendance": att_summary.get("overall_attendance", 0),
+        "total_subjects": att_summary.get("total_subjects", 0),
+        "classes_per_week": tt_summary.get("total_classes_per_week", 0),
         "system": {
             "backend": True,
             "database": db_ok,
-            "ai_agents": 2,
+            "ai_agents": 4,
         },
     }
 
@@ -107,6 +136,8 @@ def system_health(db=Depends(get_db)) -> Dict[str, Any]:
     from config import model as ai_model
     ai_ok = ai_model is not None
 
+    agents_status = orchestrator.get_agents_status()
+
     return {
         "status": "healthy" if db_ok else "degraded",
         "timestamp": datetime.utcnow().isoformat(),
@@ -116,11 +147,84 @@ def system_health(db=Depends(get_db)) -> Dict[str, Any]:
             "ai_model": {"status": "online" if ai_ok else "offline (fallback mode)"},
             "navigation_agent": {"status": "online", "locations": nav_agent.get_location_count()},
             "hostel_agent": {"status": "online"},
+            "attendance_agent": {"status": "online", "student": agents_status.get("attendance", {}).get("student", "N/A")},
+            "timetable_agent": {"status": "online"},
+            "orchestrator": {"status": "online", "agents": len(agents_status)},
         },
     }
 
 
-# ── Navigation (legacy) ───────────────────────────────────────────────────────
+# ── Master Orchestrator ──────────────────────────────────────────────────
+
+@router.get("/chat")
+def chat(
+    question: str = Query(..., description="User question for any AI agent"),
+    db=Depends(get_db),
+) -> Dict[str, Any]:
+    """Master Orchestrator endpoint - routes queries to the appropriate AI agent automatically."""
+    logger.info(f"Orchestrator request: '{question}'")
+    result = orchestrator.process(question, db)
+    return result
+
+
+@router.get("/orchestrator/status")
+def orchestrator_status() -> Dict[str, Any]:
+    """Get status of all AI agents managed by the orchestrator."""
+    return {
+        "success": True,
+        "agents": orchestrator.get_agents_status(),
+    }
+
+
+# ── Attendance Agent ──────────────────────────────────────────────────
+
+@router.get("/chat/attendance")
+def chat_attendance(
+    question: str = Query(..., description="Attendance question"),
+) -> Dict[str, Any]:
+    """Dedicated endpoint for the Attendance AI agent."""
+    logger.info(f"Attendance chat request: '{question}'")
+    result = attendance_agent.ask(question)
+    summary = attendance_agent.get_summary()
+    return {
+        "success": True,
+        "message": result,
+        "agent": "attendance",
+        "data": summary,
+    }
+
+
+@router.get("/attendance/summary")
+def attendance_summary() -> Dict[str, Any]:
+    """Get attendance summary for the dashboard."""
+    return attendance_agent.get_summary()
+
+
+# ── Timetable Agent ──────────────────────────────────────────────────
+
+@router.get("/chat/timetable")
+def chat_timetable(
+    question: str = Query(..., description="Timetable question"),
+) -> Dict[str, Any]:
+    """Dedicated endpoint for the Timetable AI agent."""
+    logger.info(f"Timetable chat request: '{question}'")
+    result = timetable_agent.handle_query(question)
+    summary = timetable_agent.get_summary()
+    return {
+        "success": True,
+        "message": result,
+        "agent": "timetable",
+        "data": summary,
+    }
+
+
+@router.get("/timetable/summary")
+def timetable_summary() -> Dict[str, Any]:
+    """Get timetable summary for the dashboard."""
+    return timetable_agent.get_summary()
+
+
+# ── Navigation ───────────────────────────────────────────────────────
 
 @router.get("/navigate")
 def navigate(place: str, db=Depends(get_db)) -> Dict[str, Any]:
@@ -135,15 +239,7 @@ def navigate(place: str, db=Depends(get_db)) -> Dict[str, Any]:
 def chat_navigation(
     question: str = Query(..., description="Navigation question or natural language query"),
 ) -> Dict[str, Any]:
-    """Dedicated endpoint for the Campus Navigation AI agent.
-
-    Uses the new intelligent NavigationAgent with:
-    - Structured knowledge base (40+ Sri Eshwar College locations)
-    - RapidFuzz fuzzy matching for natural language understanding
-    - AI-generated conversational responses (when GROQ_API_KEY is set)
-    - Walking time estimates and nearby landmarks
-    - Polite suggestions when location not found
-    """
+    """Dedicated endpoint for the Campus Navigation AI agent."""
     logger.info(f"Navigation chat request: '{question}'")
     result = nav_agent.navigate(question)
     return result
@@ -159,6 +255,8 @@ def navigation_info() -> Dict[str, Any]:
         "college": "Sri Eshwar College of Engineering, Coimbatore",
     }
 
+
+# ── Hostel / Complaints ────────────────────────────────────────────────
 
 @router.get("/chat/hostel")
 def chat_hostel(
@@ -207,6 +305,8 @@ def chat_hostel(
         "success": True,
     }
 
+
+# ── Location CRUD ────────────────────────────────────────────────────
 
 @router.get("/locations")
 def get_locations(db=Depends(get_db)) -> Dict[str, Any]:
@@ -283,7 +383,9 @@ def delete_location(loc_id: int, db=Depends(get_db)) -> Dict[str, Any]:
     return {"success": True}
 
 
-@router.post("/complaint")
+# ── Complaint CRUD ──────────────────────────────────────────────────
+
+@router.post("/complaint", status_code=201)
 def create_complaint(payload: ComplaintCreate, db=Depends(get_db)) -> Dict[str, Any]:
     agent = HostelComplaintAgent(db)
     result = agent.create_complaint(payload.student_name, payload.room_number, payload.description)
@@ -297,7 +399,7 @@ def list_complaints(db=Depends(get_db)) -> Dict[str, Any]:
     return {"complaints": items}
 
 
-@router.get("/complaints/{complaint_id}")
+@router.get("/complaint/{complaint_id}")
 def get_complaint(complaint_id: str, db=Depends(get_db)) -> Dict[str, Any]:
     agent = HostelComplaintAgent(db)
     c = agent.get_complaint(complaint_id)
@@ -339,3 +441,91 @@ def update_complaint_status(complaint_id: str, payload: StatusUpdate, db=Depends
         return {"message": res.get("message", "Status updated"), "complaint_id": res.get("complaint_id")}
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
+
+
+# ── Placement Agent ──────────────────────────────────────────────────
+
+class PlacementRequest(BaseModel):
+    company_name: str
+    job_role: str
+    current_skills: Optional[str] = ""
+    experience_level: Optional[str] = "fresher"
+
+
+@router.post("/chat/placement")
+def chat_placement(payload: PlacementRequest) -> Dict[str, Any]:
+    """Dedicated endpoint for the Placement Preparation AI agent."""
+    logger.info(f"Placement request: {payload.company_name} - {payload.job_role}")
+    result = placement_agent.generate_plan(
+        company_name=payload.company_name,
+        job_role=payload.job_role,
+        current_skills=payload.current_skills,
+        experience_level=payload.experience_level,
+    )
+    return {
+        "success": True,
+        "message": "Placement plan generated successfully!",
+        "agent": "placement",
+        "data": result,
+    }
+
+
+# ── Learning Coach Agent ──────────────────────────────────────────────────
+
+class LearningRequest(BaseModel):
+    subject: str
+    current_skill_level: Optional[str] = "beginner"
+    exam_date: Optional[str] = ""
+    study_hours_per_day: Optional[int] = 2
+
+
+@router.post("/chat/learning")
+def chat_learning(payload: LearningRequest) -> Dict[str, Any]:
+    """Dedicated endpoint for the Learning Coach AI agent."""
+    logger.info(f"Learning request: {payload.subject} - {payload.current_skill_level}")
+    result = learning_coach_agent.generate_plan(
+        subject=payload.subject,
+        current_skill_level=payload.current_skill_level,
+        exam_date=payload.exam_date,
+        study_hours_per_day=payload.study_hours_per_day,
+    )
+    return {
+        "success": True,
+        "message": "Study plan generated successfully!",
+        "agent": "learning",
+        "data": result,
+    }
+
+
+@router.post("/chat/campusos")
+def chat_campusos(payload: CampusOSRequest) -> Dict[str, Any]:
+    """CampusOS-AI integration endpoint that supports learning and placement modes."""
+    mode = (payload.mode or "learning").strip().lower()
+    if mode == "placement":
+        result = placement_agent.generate_plan(
+            company_name=payload.company_name or "",
+            job_role=payload.job_role or "",
+            current_skills=payload.current_skills or "",
+            experience_level=payload.experience_level or "fresher",
+        )
+        return {
+            "success": True,
+            "message": "Placement plan generated successfully!",
+            "agent": "campusos",
+            "mode": "placement",
+            "data": result,
+        }
+
+    result = learning_coach_agent.generate_plan(
+        subject=payload.subject or "general",
+        current_skill_level=payload.current_skill_level or "beginner",
+        exam_date=payload.exam_date or "",
+        study_hours_per_day=payload.study_hours_per_day or 2,
+    )
+    return {
+        "success": True,
+        "message": "Study plan generated successfully!",
+        "agent": "campusos",
+        "mode": "learning",
+        "data": result,
+    }

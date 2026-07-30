@@ -36,3 +36,17 @@ def test_complaint_creation_and_lookup():
     complaint_id = response.json()["complaint"]["complaint_id"]
     lookup_response = client.get(f"/complaint/{complaint_id}")
     assert lookup_response.status_code == 200
+
+
+def test_campusos_learning_endpoint():
+    payload = {
+        "mode": "learning",
+        "subject": "Computer Science",
+        "current_skill_level": "beginner",
+        "exam_date": "2030-01-15",
+        "study_hours_per_day": 2,
+    }
+    response = client.post("/chat/campusos", json=payload)
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+    assert response.json()["agent"] == "campusos"

@@ -5,6 +5,7 @@ import {
   Compass, Building2, MapPin, ClipboardCheck, Users, CheckCircle2,
   AlertCircle, Loader2, Map, Sparkles, ArrowRight, Clock,
   Wifi, Database, Server, Activity, RefreshCw, TrendingUp,
+  BarChart3, Calendar, BrainCircuit,
 } from 'lucide-react';
 import AgentCard from '../components/AgentCard';
 import StatCard from '../components/StatCard';
@@ -162,7 +163,7 @@ export default function Dashboard() {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-sm font-semibold text-gray-900 dark:text-white">AI Agents</h2>
           <span className="badge bg-accent-50 dark:bg-accent-500/10 text-accent-700 dark:text-accent-400 border border-accent-200 dark:border-accent-500/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" /> 2 Active
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" /> 4 Active
           </span>
         </div>
         <div className="grid gap-5 md:grid-cols-2">
@@ -174,6 +175,18 @@ export default function Dashboard() {
             description="Report and track hostel maintenance issues using AI-powered classification and priority assignment."
             route="/hostel" gradient="from-emerald-500 to-teal-600" badge="Live"
             stats={[{ value: stats?.resolved_complaints ?? '—', label: 'Resolved' }, { value: stats?.pending_complaints ?? '—', label: 'Pending' }]} />
+          <AgentCard icon={BarChart3} title="Attendance AI"
+            description="Track your academic attendance, check exam eligibility, and analyze subject-wise performance."
+            route="/attendance" gradient="from-emerald-500 to-teal-600" badge="Live"
+            stats={[{ value: stats?.overall_attendance ?? '—', label: 'Attendance' }, { value: stats?.total_subjects ?? '—', label: 'Subjects' }]} />
+          <AgentCard icon={Calendar} title="Timetable AI"
+            description="View your class schedule, check today's timetable, and plan your academic week."
+            route="/timetable" gradient="from-violet-500 to-purple-600" badge="Live"
+            stats={[{ value: stats?.classes_per_week ?? '—', label: 'Classes/Week' }, { value: '6', label: 'Days' }]} />
+          <AgentCard icon={BrainCircuit} title="CampusOS AI"
+            description="Generate study plans or placement roadmaps through the unified CampusOS agent included in the platform."
+            route="/campusos" gradient="from-indigo-500 to-violet-600" badge="New"
+            stats={[{ value: '2', label: 'Modes' }, { value: 'AI', label: 'Powered' }]} />
         </div>
       </motion.div>
 

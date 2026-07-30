@@ -1,0 +1,257 @@
+{
+  "metadata": {
+    "department": "Computer Science and Engineering",
+    "class": "III CSE A",
+    "semester": 5,
+    "academic_year": "2026-2027",
+    "version": "2.0",
+    "effective_date": "19-01-2026",
+    "classroom": "",
+    "class_strength": 73,
+    "class_advisor": "Ms. S. Saradha, Assistant Professor/CSE",
+    "class_tutors": [
+      "Mr. K. Sabarigirivason, Assistant Professor/CSE",
+      "NEW FACULTY"
+    ]
+  },
+  "time_slots": [
+    { "period": 1, "time": "08:40-09:35" },
+    { "period": 2, "time": "09:35-10:25" },
+    { "period": 3, "time": "10:25-11:15" },
+    { "break": "Tea Break", "time": "11:15-11:35" },
+    { "period": 4, "time": "11:35-12:25" },
+    { "period": 5, "time": "12:25-01:15" },
+    { "break": "Lunch Break", "time": "01:15-02:00" },
+    { "activity_hour": "Activity Hour", "time": "02:00-02:30" },
+    { "period": 6, "time": "02:30-03:20" },
+    { "period": 7, "time": "03:20-04:10" }
+  ],
+  "timetable": {
+    "Monday":    ["ESIOT",     null,   "DS PROJECT", "ACD",    "TWM",   null,  "DPCO LAB"],
+    "Tuesday":   ["DS",        "SS",   "PE-1",       "ACD",    "DPCO",  "SD",  "LIB"],
+    "Wednesday": ["ESIOT LAB", null,   "APT",        "PE-1",   "ACD",   null,  "PROJECT"],
+    "Thursday":  ["DPCO",      null,   "DS LAB",     "PE-1 LAB", null,  "ESIOT", "ACD"],
+    "Friday":    ["DS",        "ESIOT","ACD",        "DPCO",   "ACD",   null,  "SD LAB"],
+    "Saturday":  ["ACD",       "DPCO", "PPS",        null,     "PPS",   null,  "COE"]
+  },
+  "subjects": [
+    {
+      "short_name": "ACD",
+      "course_code": "U23CS405",
+      "course_title": "Automata Theory and Compiler Design",
+      "faculty": "Mr. K. Sabarigirivason, AP/CSE",
+      "venue": "Classroom",
+      "category": "PC",
+      "credits": 4,
+      "hours": 4
+    },
+    {
+      "short_name": "ACD-T",
+      "course_code": "U23CS405",
+      "course_title": "Automata Theory and Compiler Design (Tutorial)",
+      "faculty": "Mr. K. Sabarigirivason, AP/CSE",
+      "venue": "Classroom",
+      "category": "PC",
+      "credits": 4,
+      "hours": 1
+    },
+    {
+      "short_name": "ESIOT",
+      "course_code": "U23EC383",
+      "course_title": "Embedded Systems and IoT",
+      "faculty": "Mr. M. Vivek Kumar, AP/ECE",
+      "venue": "Classroom",
+      "category": "ES",
+      "credits": 4,
+      "hours": 3
+    },
+    {
+      "short_name": "ESIOT LAB",
+      "course_code": "U23EC383",
+      "course_title": "Embedded Systems and IoT Laboratory",
+      "faculty": "Mr. M. Vivek Kumar, AP/ECE / Ms. O. Faridha Banu, AP/ECE",
+      "venue": "Lab",
+      "category": "ES",
+      "credits": 4,
+      "hours": 2
+    },
+    {
+      "short_name": "DPCO",
+      "course_code": "U23EC382",
+      "course_title": "Digital Principles and Computer Organization",
+      "faculty": "Dr. R. Michaelraj Kingston, Prof/ECE / Dr. S. Ramkumar, ASP/ECE",
+      "venue": "Classroom",
+      "category": "ES",
+      "credits": 4,
+      "hours": 3
+    },
+    {
+      "short_name": "DPCO LAB",
+      "course_code": "U23EC382",
+      "course_title": "Digital Principles and Computer Organization Laboratory",
+      "faculty": "Dr. R. Michaelraj Kingston, Prof/ECE / Dr. S. Ramkumar, ASP/ECE",
+      "venue": "Lab",
+      "category": "ES",
+      "credits": 4,
+      "hours": 2
+    },
+    {
+      "short_name": "DS",
+      "course_code": "U23AD491",
+      "course_title": "Data Science",
+      "faculty": "Dr. M. Suriya, ASP/CSE",
+      "venue": "Classroom",
+      "category": "PC",
+      "credits": 4,
+      "hours": 2
+    },
+    {
+      "short_name": "DS PROJECT",
+      "course_code": "U23AD491",
+      "course_title": "Data Science (Project)",
+      "faculty": "Dr. M. Suriya, ASP/CSE",
+      "venue": "Classroom",
+      "category": "PC",
+      "credits": 4,
+      "hours": 2
+    },
+    {
+      "short_name": "DS LAB",
+      "course_code": "U23AD491",
+      "course_title": "Data Science Laboratory",
+      "faculty": "Dr. M. Suriya, ASP/CSE / Dr. S. K. Hari Karthick, ASP/CSE",
+      "venue": "Lab",
+      "category": "PC",
+      "credits": 4,
+      "hours": 2
+    },
+    {
+      "short_name": "PE-1",
+      "course_code": "PE-1",
+      "course_title": "Professional Elective I",
+      "options": [
+        {
+          "code": "U23CS584",
+          "title": "Competitive Programming",
+          "faculty": "Dr. Giridharan, AP/CSE"
+        },
+        {
+          "code": "U23CS591",
+          "title": "UI Design with Figma",
+          "faculty": "Dr. V. S. Akshaya, Prof/CSE / Ms. R. Rajeswari, AP/CSE"
+        },
+        {
+          "code": "U23IT593",
+          "title": "DevOps",
+          "faculty": "Ms. S. Harshitha, AP/CYS / Dr. S. Ananth, AP/CSE"
+        },
+        {
+          "code": "U23CS593",
+          "title": "Digital and Mobile Forensics",
+          "faculty": "Ms. M. Sowpamika, AP/CSE / Dr. M. Suriya, AP/CSE"
+        }
+      ],
+      "venue": "Classroom",
+      "category": "PE",
+      "credits": 3,
+      "hours": "2+2"
+    },
+    {
+      "short_name": "PE-1 LAB",
+      "course_code": "PE-1",
+      "course_title": "Professional Elective I Laboratory",
+      "venue": "Lab",
+      "category": "PE",
+      "credits": 3,
+      "hours": "2+2"
+    },
+    {
+      "short_name": "SD",
+      "course_code": "U23CB593",
+      "course_title": "System Design",
+      "faculty": "Dr. J. Sreemathy, AP/CSE",
+      "venue": "Classroom",
+      "category": "PE",
+      "credits": 3,
+      "hours": 2
+    },
+    {
+      "short_name": "SD LAB",
+      "course_code": "U23CB593",
+      "course_title": "System Design Laboratory",
+      "faculty": "Dr. J. Sreemathy, AP/CSE / Ms. N. Lavanya, AP/CSE",
+      "venue": "Lab",
+      "category": "PE",
+      "credits": 3,
+      "hours": 2
+    },
+    {
+      "short_name": "PROJECT",
+      "course_code": "U23CS652",
+      "course_title": "Innovative / Multi-Disciplinary Project",
+      "faculty": "Mr. K. Sabarigirivason, AP/CSE",
+      "venue": "Classroom",
+      "category": "PW",
+      "credits": 1,
+      "hours": 2
+    }
+  ],
+  "additional_hours": [
+    {
+      "short_name": "APT",
+      "title": "Aptitude",
+      "faculty": "Ms. Rubeena, Placement Team",
+      "credits": "-",
+      "hours": 1
+    },
+    {
+      "short_name": "SS",
+      "title": "Soft Skills",
+      "faculty": "Ms. Jovika, Placement Team",
+      "credits": "-",
+      "hours": 1
+    },
+    {
+      "short_name": "LIB",
+      "title": "Library Hour",
+      "faculty": "Ms. S. Saradha, AP/CSE",
+      "credits": "-",
+      "hours": 1
+    },
+    {
+      "short_name": "TWM",
+      "title": "Tutor Ward Meet",
+      "faculty": "Ms. S. Saradha, AP/CSE / Mr. K. Sabarigirivason, AP/CSE / NEW FACULTY",
+      "credits": "-",
+      "hours": 1
+    },
+    {
+      "short_name": "PPS",
+      "title": "Placement Preparation Series",
+      "faculty": "Ms. S. Saradha, AP/CSE",
+      "credits": "-",
+      "hours": 3
+    },
+    {
+      "short_name": "SWS",
+      "title": "Student Welfare Session",
+      "faculty": "Ms. S. Saradha, AP/CSE",
+      "credits": "-",
+      "hours": 1
+    },
+    {
+      "short_name": "COE",
+      "title": "Center of Excellence",
+      "faculty": "Ms. S. Saradha, AP/CSE / Mr. K. Sabarigirivason, AP/CSE / NEW FACULTY",
+      "credits": "-",
+      "hours": 1
+    },
+    {
+      "short_name": "ACTIVITY HOUR",
+      "title": "Activity Hour",
+      "faculty": "Ms. S. Saradha, AP/CSE / Mr. K. Sabarigirivason, AP/CSE / NEW FACULTY",
+      "credits": "-",
+      "hours": 1
+    }
+  ]
+}

@@ -1,11 +1,19 @@
 import toast from 'react-hot-toast';
 
-export const notify = {
-  success: (msg) => toast.success(msg, { duration: 3000 }),
-  error:   (msg) => toast.error(msg,   { duration: 4000 }),
-  info:    (msg) => toast(msg,          { duration: 3000, icon: 'ℹ️' }),
-  loading: (msg) => toast.loading(msg),
-  dismiss: (id)  => toast.dismiss(id),
+const notify = {
+  success: (message) => toast.success(message, {
+    duration: 3000,
+    position: 'top-right',
+  }),
+  error: (message) => toast.error(message, {
+    duration: 4000,
+    position: 'top-right',
+  }),
+  info: (message) => toast(message, {
+    duration: 3000,
+    position: 'top-right',
+    icon: 'ℹ️',
+  }),
 };
 
 export default notify;

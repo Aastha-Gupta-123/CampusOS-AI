@@ -1,0 +1,59 @@
+{
+  "student": {
+    "name": "Mitesh",
+    "roll_number": "CS2022060",
+    "semester": 5,
+    "department": "Computer Science and Engineering"
+  },
+  "attendance": [
+    {
+      "subject": "Computer Networks",
+      "attended_classes": 31,
+      "total_classes": 46,
+      "faculty": "Dr. Raksha Sengupta",
+      "credits": 3
+    },
+    {
+      "subject": "Theory of Computation",
+      "attended_classes": 37,
+      "total_classes": 48,
+      "faculty": "Ms. Reva Narang",
+      "credits": 3
+    },
+    {
+      "subject": "Software Engineering",
+      "attended_classes": 40,
+      "total_classes": 48,
+      "faculty": "Ms. Vasudha Toor",
+      "credits": 3
+    },
+    {
+      "subject": "Operating Systems",
+      "attended_classes": 37,
+      "total_classes": 42,
+      "faculty": "Prof. Timothy De",
+      "credits": 3
+    },
+    {
+      "subject": "Machine Learning",
+      "attended_classes": 40,
+      "total_classes": 48,
+      "faculty": "Mr. Jason Hayer",
+      "credits": 4
+    },
+    {
+      "subject": "Artificial Intelligence",
+      "attended_classes": 36,
+      "total_classes": 46,
+      "faculty": "Mr. Oliver Batra",
+      "credits": 4
+    },
+    {
+      "subject": "Cloud Computing",
+      "attended_classes": 29,
+      "total_classes": 40,
+      "faculty": "Mr. Qarin Dayal",
+      "credits": 3
+    }
+  ]
+}

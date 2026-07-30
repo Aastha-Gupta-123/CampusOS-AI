@@ -3,7 +3,7 @@ and classification while providing safe fallbacks.
 """
 from typing import Optional, Dict
 
-from .config import model
+from config import model
 
 
 def detect_intent(text: str) -> str:
@@ -16,9 +16,10 @@ def detect_intent(text: str) -> str:
     if model is not None:
         try:
             prompt = f"Classify the intent of this user message as either 'complaint' or 'navigation':\n\nMessage: {t}\n\nRespond with only the single word 'complaint' or 'navigation'."
-            resp = model.generate_text(prompt)
+            messages = [{"role": "user", "content": prompt}]
+            resp = model.invoke(messages)
             if resp:
-                r = resp.strip().lower()
+                r = resp.content.strip().lower() if hasattr(resp, "content") else str(resp).strip().lower()
                 if "complaint" in r:
                     return "complaint"
                 if "navigation" in r:
@@ -42,13 +43,13 @@ def classify_complaint(text: str) -> Dict[str, str]:
                 "Given the complaint text, return a JSON object with keys 'category' and 'priority'.\n"
                 f"Complaint: {text}\n\nRespond with strict JSON."
             )
-            resp = model.generate_text(prompt)
+            messages = [{"role": "user", "content": prompt}]
+            resp = model.invoke(messages)
             if resp:
-                # attempt to parse naive JSON from the response
+                content = resp.content if hasattr(resp, "content") else str(resp)
                 import json
-
                 try:
-                    parsed = json.loads(resp)
+                    parsed = json.loads(content)
                     return {"category": parsed.get("category", "Other"), "priority": parsed.get("priority", "Low")}
                 except Exception:
                     pass
